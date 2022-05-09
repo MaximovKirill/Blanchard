@@ -9,70 +9,136 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" href="img/favicon.svg" type="image/svg">
   <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
   <link rel="stylesheet" href="css/style.css">
   <title>Blanchard</title>
 </head>
 <body>
 
-  <header class="header">
-    <div class="header__item header__item-navigation container flex">
-      <a href="#" class="header__logo">
-        <picture class="header__img">
-          <!-- <source srcset="img/header-logo-320.svg" media="(max-width: 575px)"> -->
-          <img src="img/header__logo.svg" alt="Blanchard художественная галерея">
-        </picture>
-      </a>
-      <nav class="nav header__nav">
-        <ul class="nav__list header__list list-reset flex">
-          <li class="nav__item header__element">                                <!-- имя классов??? -->
-            <a href="#about" class="nav__link header__link">О&nbsp;нас</a>
-          </li>
-          <li class="nav__item header__element">
-            <a href="#galery" class="nav__link header__link">Галерея</a>
-          </li>
-          <li class="nav__item header__element">
-            <a href="#catalog" class="nav__link header__link">Каталог</a>
-          </li>
-          <li class="nav__item header__element">
-            <a href="#developments" class="nav__link header__link">События</a>
-          </li>
-          <li class="nav__item header__element">
-            <a href="#rojects" class="nav__link header__link">Проекты</a>
-          </li>
-          <li class="nav__item header__element">
-            <a href="#contacts" class="nav__link header__link">Контакты</a>
-          </li>
-        </ul >
-      </nav>
-      <a href="#" class="header__login">Войти</a>
+  <div class="top-wrapper">
+
+    <header class="header">
+      <div class="header__item header__item-navigation">
+        <div class="header__container container flex">
+          <a href="#" class="header__logo">
+            <picture class="header__img">
+              <!-- <source srcset="img/header-logo-320.svg" media="(max-width: 575px)"> -->
+              <img src="img/header__logo.svg" alt="Blanchard художественная галерея">
+            </picture>
+          </a>
+          <nav class="nav header__nav">
+            <ul class="nav__list header__list list-reset flex">
+              <li class="nav__item header__element">                                <!-- имя классов??? -->
+                <a href="#about" class="nav__link header__link">О&nbsp;нас</a>
+              </li>
+              <li class="nav__item header__element">
+                <a href="#galery" class="nav__link header__link">Галерея</a>
+              </li>
+              <li class="nav__item header__element">
+                <a href="#catalog" class="nav__link header__link">Каталог</a>
+              </li>
+              <li class="nav__item header__element">
+                <a href="#developments" class="nav__link header__link">События</a>
+              </li>
+              <li class="nav__item header__element">
+                <a href="#rojects" class="nav__link header__link">Проекты</a>
+              </li>
+              <li class="nav__item header__element">
+                <a href="#contacts" class="nav__link header__link">Контакты</a>
+              </li>
+            </ul >
+          </nav>
+          <a href="#" class="header__login">Войти</a>
+        </div>
+      </div>
+      <div class="header__item header__item-categories categories">
+        <div class="header__container header__container-bottom container flex">
+          <ul class="categories__list list-reset flex">
+            <li class="categories__item">
+              <button class="categories__item-btn js-header-dropdown-btn btn-reset" data-path="one">Реализм</button>
+
+              <div class="categories__dropdown js-header-drop" data-target="one">
+                <div class="categories__dropdown-wrap" data-simplebar>
+                  <ul class="categories__dropdown-list list-reset">
+                    <li class="categories__dropdown-item">
+                      <a href="#" class="categories__item-link">Тинторрето</a>
+                    </li>
+                    <li class="categories__dropdown-item">
+                      <a href="#" class="categories__item-link">Фридрих</a>
+                    </li>
+                    <li class="categories__dropdown-item">
+                      <a href="#" class="categories__item-link">Леонардо</a>
+                    </li>
+                    <li class="categories__dropdown-item">
+                      <a href="#" class="categories__item-link">Верроккьо</a>
+                    </li>
+                    <li class="categories__dropdown-item">
+                      <a href="#" class="categories__item-link">Тинторрето</a>
+                    </li>
+                    <li class="categories__dropdown-item">
+                      <a href="#" class="categories__item-link">Тинторрето</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </li>
+            <li class="categories__item">
+              <button class="categories__item-btn js-header-dropdown-btn btn-reset" data-path="two">Импрессионизм</button>
+            </li>
+            <li class="categories__item">
+              <button class="categories__item-btn js-header-dropdown-btn btn-reset" data-path="three">Постимпрессионизм</button>
+            </li>
+            <li class="categories__item">
+              <button class="categories__item-btn js-header-dropdown-btn btn-reset" data-path="four">Авангард</button>
+            </li>
+            <li class="categories__item">
+              <button class="categories__item-btn js-header-dropdown-btn btn-reset" data-path="five">Футуризм</button>
+            </li>
+          </ul>
+          <form class="header__seach seach flex" action="https://jsonplaceholder.typicode.com/posts" method="POST">
+            <button class="search__btn btn-reset">
+              <svg class="search__btn-img" width="23" height="22" viewbox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="6.8678" height="1.71695" transform="matrix(-0.718931 0.695081 0.718931 0.695081 4.9375 15.6534)" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0969 18C7.53041 18 3.99692 14.3229 3.99692 10C3.99692 5.67715 7.53041 2 12.0969 2C16.6634 2 20.1969 5.67715 20.1969 10C20.1969 14.3229 16.6634 18 12.0969 18ZM12.0969 20C6.57408 20 2.09692 15.5228 2.09692 10C2.09692 4.47715 6.57408 0 12.0969 0C17.6198 0 22.0969 4.47715 22.0969 10C22.0969 15.5228 17.6198 20 12.0969 20Z" fill="white"/>
+              </svg>
+            </button>
+            <input class="seach__item" type="search" placeholder="Поиск по сайту">
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__container container">
+        <h2 class="hero__title section-title">Прикоснитесь к&nbsp;прекрасному</h2>
+        <p class="hero__descr">Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что реализация намеченных плановых заданий создаёт предпосылки для новых предложений.</p>
+        <a href="#" class="hero__link">Подписаться на&nbsp;рассылку</a>
+      </div>
+    </section>
+
+    <div class="slider-wrapper">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swiper-slide__first"></div>
+          <div class="swiper-slide swiper-slide__second"></div>
+          <div class="swiper-slide swiper-slide__third"></div>
+        </div>
+      </div>
     </div>
-    <div class="header__item header__item-categories container categories flex">
-      <ul class="categories__list list-reset flex">
-        <li class="categories__item">Реализм</li>
-        <li class="categories__item">Импрессионизм</li>
-        <li class="categories__item">Постимпрессионизм</li>
-        <li class="categories__item">Авангард</li>
-        <li class="categories__item">Футуризм</li>
-      </ul>
-      <form class="header__seach seach flex" action="https://jsonplaceholder.typicode.com/posts" method="POST">
-        <button class="search-btn btn-reset" type="button">
-          <svg class="search__btn-img" width="23" height="22" viewbox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="6.8678" height="1.71695" transform="matrix(-0.718931 0.695081 0.718931 0.695081 4.9375 15.6534)" fill="white"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0969 18C7.53041 18 3.99692 14.3229 3.99692 10C3.99692 5.67715 7.53041 2 12.0969 2C16.6634 2 20.1969 5.67715 20.1969 10C20.1969 14.3229 16.6634 18 12.0969 18ZM12.0969 20C6.57408 20 2.09692 15.5228 2.09692 10C2.09692 4.47715 6.57408 0 12.0969 0C17.6198 0 22.0969 4.47715 22.0969 10C22.0969 15.5228 17.6198 20 12.0969 20Z" fill="white"/>
-          </svg>
-        </button>
-        <input class="seach__item" type="search" placeholder="Поиск по сайту">
-      </form>
-    </div>
-  </header>
+
+  </div>
 
   <main class="main">
-
-  <section class="hero">
-  </section>
-
   </main>
 
+  <footer class="footer">
+  </footer>
+
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>
+
