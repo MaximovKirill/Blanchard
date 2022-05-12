@@ -9,18 +9,29 @@ const swiper = new Swiper('.swiper', {
   },
 });
 
-// // burger-menu
-// window.addEventListener('DOMContentLoaded', function() {
-//   document.querySelector('#header__burger').addEventListener('click', function() {
-//     document.querySelector('#header__nav-adaptive').classList.add('active');
-//   });
-//   document.querySelector('#nav-adaptive__close').addEventListener('click', function() {
-//     document.querySelector('#header__nav-adaptive').classList.remove('active');
-//   });
-//   document.querySelectorAll('.header__link-adaptive').forEach(function(t) {
-//     t.addEventListener('click', function(event) {
-//       document.querySelector('#header__nav-adaptive').classList.remove('active');
-//     });
-//   });
-// });
-
+// tabs
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.categories__item-btn').forEach(function(tabsBtn) {
+    tabsBtn.addEventListener('click', function(event) {
+      const path = event.currentTarget.dataset.path;
+      if (event.currentTarget.classList.contains('categories__item-btn_active')) {
+        document.querySelectorAll('.categories__item-btn').forEach(function(stepBtn) {
+          stepBtn.classList.remove('categories__item-btn_active')
+        });
+        document.querySelectorAll('.categories__dropdown').forEach(function(tabContent) {
+          tabContent.classList.remove('categories__dropdown_active')
+        });
+      }
+        else {
+          document.querySelectorAll('.categories__item-btn').forEach(function(stepBtn) {
+            stepBtn.classList.remove('categories__item-btn_active')
+          });
+          event.currentTarget.classList.add('categories__item-btn_active');
+          document.querySelectorAll('.categories__dropdown').forEach(function(tabContent) {
+            tabContent.classList.remove('categories__dropdown_active')
+          });
+          document.querySelector(`[data-target="${path}"]`).classList.add('categories__dropdown_active')
+        }
+    })
+  })
+});

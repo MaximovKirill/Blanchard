@@ -46,7 +46,9 @@
   --color-black-transp-drop: rgba(0, 0, 0, 0.6);
   --color-violet: #9d5cd0;
   --color-pink: #d88f99;
+  --color-lightgray: #d3d3d3;
 
+  --pb-header__item-categories: 21px;
 }
 
 html {
@@ -118,31 +120,8 @@ body {
   line-height: 100%;
 }
 
-.simplebar-track  {
-  overflow: visible;
-}
-
-.simplebar-scrollbar {
-  left: -1px;
-  height: 100%;
-  background-color: red;
-}
-
-.simplebar-track.simplebar-vertical {
-  right: -20px;
-  width: 4px;
-  background-color: var(--color-black);
-  /* opacity: 0;
-  transition: opacity 0.2s linear; */
-}
-
-.simplebar-scrollbar::before {
-  width: 2px;
-  background-color: var(--color-white);
-}
-
-.simplebar-scrollbar.simplebar-visible::before {
-  opacity: 1;
+.simplebar-content-wrapper {                    /* добавил */
+  overflow: auto;
 }
 
 /* top-wrapper */
@@ -151,6 +130,8 @@ body {
   position: relative;
   background-color: var(--color-black);
 }
+
+/* slider */
 
 .slider-wrapper {
   position: absolute;
@@ -178,7 +159,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: lightgray;
+  background-color: var(--color-lightgray);
 }
 
 .swiper-slide__first {
@@ -193,15 +174,6 @@ body {
   background-image: url("../img/top-wrapper-swiper-3.jpg");
 }
 
-@keyframes resize {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
 /* header */
 
 .header {
@@ -210,7 +182,6 @@ body {
 }
 
 .header__container {
-  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -226,7 +197,7 @@ body {
 
 .header__item-categories {
   padding-top: 23px;
-  padding-bottom: 21px;
+  padding-bottom: var(--pb-header__item-categories);
   background-color: var(--color-black-transp);
 }
 
@@ -236,8 +207,11 @@ body {
 }
 
 .header__list {
-  gap: 62px;
+  flex-wrap: wrap;
+  row-gap: var(--pb-header__item-categories);                    /*как у list категорий*/
+  column-gap: 62px;
   margin: 0;
+  margin-right: 62px;                                             /*как у column-gap*/
 }
 
 .header__link {
@@ -260,7 +234,10 @@ body {
 }
 
 .categories__list {
-  gap: 113px;
+  flex-wrap: wrap;
+  row-gap: var(--pb-header__item-categories);                  /*как padding-bottom header-item-categories*/
+  column-gap: 113px;
+  margin-right: 113px;                                        /*как у column-gap*/
 }
 
 .categories__item {
@@ -286,22 +263,28 @@ body {
   transition: transform 0.5s ease;
 }
 
-.categories__dropdown {
+.categories__dropdown {                                             /*исправил*/
   position: absolute;
-  bottom: -21px;
+  z-index: 30;
+  bottom: calc(-1*var(--pb-header__item-categories));
   left: 0;
-  /* display: none; */
-  padding: 40px;
+  display: none;
+  padding: 40px 20px 40px 40px;
   background-color: var(--color-black-transp-drop);
   transform: translateY(100%);
 }
 
+.categories__dropdown_active {
+  display: block;
+}
+
 .categories__dropdown-wrap {
-  min-width: 220px;
+  min-width: 240px;
   max-height: 220px;
 }
 
 .categories__dropdown-item {
+  max-width: 220px;                     /*добавил*/
   padding: 5px 14px 10px;
   background-color: var(--color-pink);
   background-position: center;
@@ -341,6 +324,20 @@ body {
 
 .categories__dropdown-item:nth-child(6) {
   background-image: url("../img/header-dropbox-1.jpg");
+}
+
+.categories__dropdown .simplebar-track.simplebar-vertical {       /*добавил*/
+  width: 2px;
+  background-color: #000;
+}
+
+.categories__dropdown .simplebar-track.simplebar-vertical .simplebar-scrollbar::before {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  opacity: 1;
 }
 
 .seach {
@@ -418,5 +415,19 @@ body {
   border-radius: 100px;
 }
 
+/* end of top-wrapper */
+
 /* about */
 
+
+/* keyframes */
+
+/* swiper */
+@keyframes resize {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
