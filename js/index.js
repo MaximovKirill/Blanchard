@@ -10,7 +10,7 @@ const topWrapperSwiper = new Swiper('.top-wrapper-swiper', {
 });
 
 // galery-swiper
-const galerySwiper_ = new Swiper('.galery__swiper', {
+const galerySwiper = new Swiper('.galery__swiper', {
   slidesPerView: 1,
     grid: {
       rows: 1,
@@ -72,7 +72,7 @@ const galerySwiper_ = new Swiper('.galery__swiper', {
 });
 
 // developments-swiper
-const developmentsSwiper_ = new Swiper('.developments__swiper', {
+const developmentsSwiper = new Swiper('.developments__swiper', {
   slidesPerView: 1,
     grid: {
       rows: 1,
@@ -82,6 +82,65 @@ const developmentsSwiper_ = new Swiper('.developments__swiper', {
     navigation: {
       nextEl: ".developments__swiper-button-next",
       prevEl: ".developments__swiper-button-prev"
+    },
+
+    breakpoints: {
+      441: {
+        slidesPerView: 2,
+        spaceBetween: 30
+      },
+
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 50
+      }
+    },
+
+    a11y: false,
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true
+    }, // можно управлять с клавиатуры стрелками влево/вправо
+
+    // Дальнейшие надстройки делают слайды вне области видимости не фокусируемыми
+    watchSlidesProgress: true,
+    watchSlidesVisibility: true,
+    slideVisibleClass: "slide-visible",
+
+    on: {
+      init: function () {
+        this.slides.forEach((slide) => {
+          if (!slide.classList.contains("slide-visible")) {
+            slide.tabIndex = "-1";
+          } else {
+            slide.tabIndex = "";
+          }
+        });
+      },
+      slideChange: function () {
+        this.slides.forEach((slide) => {
+          if (!slide.classList.contains("slide-visible")) {
+            slide.tabIndex = "-1";
+          } else {
+            slide.tabIndex = "";
+          }
+        });
+      }
+    }
+});
+
+// projects-swiper
+const projectsSwiper = new Swiper('.projects__swiper', {
+  slidesPerView: 1,
+  loop: true,
+    grid: {
+      rows: 1,
+      fill: "row"
+    },
+    spaceBetween: 50,
+    navigation: {
+      nextEl: ".projects__swiper-button-next",
+      prevEl: ".projects__swiper-button-prev"
     },
 
     breakpoints: {
@@ -199,4 +258,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelector(`[data-target="${path}"]`).classList.add('catalog__paper--active')
     })
   })
+});
+
+// tooltips
+tippy('.projects__tooltip-btn', {
 });
