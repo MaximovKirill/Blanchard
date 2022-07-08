@@ -14,16 +14,16 @@ const galerySwiper = new Swiper('.galery__swiper', {
   slidesPerView: 1,
     grid: {
       rows: 1,
-      fill: "row"
+      fill: 'row'
     },
     spaceBetween: 20,
     pagination: {
-      el: ".swiper-pagination",
-      type: "fraction"
+      el: '.swiper-pagination',
+      type: 'fraction'
     },
     navigation: {
-      nextEl: ".galery__swiper-button-next",
-      prevEl: ".galery__swiper-button-prev"
+      nextEl: '.galery__swiper-button-next',
+      prevEl: '.galery__swiper-button-prev'
     },
 
     breakpoints: {
@@ -47,24 +47,24 @@ const galerySwiper = new Swiper('.galery__swiper', {
     // Дальнейшие надстройки делают слайды вне области видимости не фокусируемыми
     watchSlidesProgress: true,
     watchSlidesVisibility: true,
-    slideVisibleClass: "slide-visible",
+    slideVisibleClass: 'slide-visible',
 
     on: {
       init: function () {
         this.slides.forEach((slide) => {
-          if (!slide.classList.contains("slide-visible")) {
-            slide.tabIndex = "-1";
+          if (!slide.classList.contains('slide-visible')) {
+            slide.tabIndex = '-1';
           } else {
-            slide.tabIndex = "";
+            slide.tabIndex = '';
           }
         });
       },
       slideChange: function () {
         this.slides.forEach((slide) => {
-          if (!slide.classList.contains("slide-visible")) {
-            slide.tabIndex = "-1";
+          if (!slide.classList.contains('slide-visible')) {
+            slide.tabIndex = '-1';
           } else {
-            slide.tabIndex = "";
+            slide.tabIndex = '';
           }
         });
       }
@@ -76,12 +76,12 @@ const developmentsSwiper = new Swiper('.developments__swiper', {
   slidesPerView: 1,
     grid: {
       rows: 1,
-      fill: "row"
+      fill: 'row'
     },
     spaceBetween: 20,
     navigation: {
-      nextEl: ".developments__swiper-button-next",
-      prevEl: ".developments__swiper-button-prev"
+      nextEl: '.developments__swiper-button-next',
+      prevEl: '.developments__swiper-button-prev'
     },
 
     breakpoints: {
@@ -102,28 +102,36 @@ const developmentsSwiper = new Swiper('.developments__swiper', {
       onlyInViewport: true
     }, // можно управлять с клавиатуры стрелками влево/вправо
 
-    // Дальнейшие надстройки делают слайды вне области видимости не фокусируемыми
     watchSlidesProgress: true,
     watchSlidesVisibility: true,
-    slideVisibleClass: "slide-visible",
-
+    slideVisibleClass: 'slide-visible',
     on: {
       init: function () {
         this.slides.forEach((slide) => {
-          if (!slide.classList.contains("slide-visible")) {
-            slide.tabIndex = "-1";
+          slide.tabIndex = '-1';
+          if (!slide.classList.contains('slide-visible')) {
+            slide.querySelectorAll('.development__link').forEach(function(x) {
+              x.tabIndex = '-1';
+            });
           } else {
-            slide.tabIndex = "";
-          }
+            slide.querySelectorAll('.development__link').forEach(function(x) {
+              x.tabIndex = '';
+            });
+          };
         });
       },
       slideChange: function () {
         this.slides.forEach((slide) => {
-          if (!slide.classList.contains("slide-visible")) {
-            slide.tabIndex = "-1";
+          slide.tabIndex = '-1';
+          if (!slide.classList.contains('slide-visible')) {
+            slide.querySelectorAll('.development__link').forEach(function(x) {
+              x.tabIndex = '-1';
+            });
           } else {
-            slide.tabIndex = "";
-          }
+            slide.querySelectorAll('.development__link').forEach(function(x) {
+              x.tabIndex = '';
+            });
+          };
         });
       }
     }
@@ -135,12 +143,12 @@ const projectsSwiper = new Swiper('.projects__swiper', {
   loop: true,
     grid: {
       rows: 1,
-      fill: "row"
+      fill: 'row'
     },
     spaceBetween: 50,
     navigation: {
-      nextEl: ".projects__swiper-button-next",
-      prevEl: ".projects__swiper-button-prev"
+      nextEl: '.projects__swiper-button-next',
+      prevEl: '.projects__swiper-button-prev'
     },
 
     breakpoints: {
@@ -164,24 +172,24 @@ const projectsSwiper = new Swiper('.projects__swiper', {
     // Дальнейшие надстройки делают слайды вне области видимости не фокусируемыми
     watchSlidesProgress: true,
     watchSlidesVisibility: true,
-    slideVisibleClass: "slide-visible",
+    slideVisibleClass: 'slide-visible',
 
     on: {
       init: function () {
         this.slides.forEach((slide) => {
-          if (!slide.classList.contains("slide-visible")) {
-            slide.tabIndex = "-1";
+          if (!slide.classList.contains('slide-visible')) {
+            slide.tabIndex = '-1';
           } else {
-            slide.tabIndex = "";
+            slide.tabIndex = '';
           }
         });
       },
       slideChange: function () {
         this.slides.forEach((slide) => {
-          if (!slide.classList.contains("slide-visible")) {
-            slide.tabIndex = "-1";
+          if (!slide.classList.contains('slide-visible')) {
+            slide.tabIndex = '-1';
           } else {
-            slide.tabIndex = "";
+            slide.tabIndex = '';
           }
         });
       }
@@ -191,29 +199,29 @@ const projectsSwiper = new Swiper('.projects__swiper', {
 
 // dropbox-tabs
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.categories__item-btn').forEach(function(tabsBtn) {
+  document.querySelectorAll('.categories__btn').forEach(function(tabsBtn) {
     tabsBtn.addEventListener('click', function(event) {
       const path = event.currentTarget.dataset.path;
-      if (event.currentTarget.classList.contains('categories__item-btn_active')) {
-        document.querySelectorAll('.categories__item-btn').forEach(function(stepBtn) {
-          stepBtn.classList.remove('categories__item-btn_active')
+      if (event.currentTarget.classList.contains('categories__btn_active')) {
+        document.querySelectorAll('.categories__btn').forEach(function(stepBtn) {
+          stepBtn.classList.remove('categories__btn_active')
         });
         document.querySelectorAll('.categories__dropdown').forEach(function(tabContent) {
           tabContent.classList.remove('categories__dropdown_active')
         });
       }
         else {
-          document.querySelectorAll('.categories__item-btn').forEach(function(stepBtn) {
-            stepBtn.classList.remove('categories__item-btn_active')
+          document.querySelectorAll('.categories__btn').forEach(function(stepBtn) {
+            stepBtn.classList.remove('categories__btn_active')
           });
-          event.currentTarget.classList.add('categories__item-btn_active');
+          event.currentTarget.classList.add('categories__btn_active');
           document.querySelectorAll('.categories__dropdown').forEach(function(tabContent) {
             tabContent.classList.remove('categories__dropdown_active')
           });
-          document.querySelector(`[data-target="${path}"]`).classList.add('categories__dropdown_active')
+          document.querySelector(`[data-target='${path}']`).classList.add('categories__dropdown_active')
         }
     })
-  })
+  });
 });
 
 // scroll
@@ -231,15 +239,26 @@ document.querySelectorAll('.js-scroll-link').forEach(link => {
 });
 
 // select
-const element = document.querySelector("#selectCustom");
+const element = document.querySelector('#selectCustom');
 const choises = new Choices(element, {
   searchEnabled: false,
   itemSelectText: '',
   shouldSort: false
 });
 
+//checkbox
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.checkbox-item').forEach(function(check) {
+    check.addEventListener('keydown', function(x) {
+      if (x.keyCode === 13) {
+        check.toggleAttribute('checked');
+      }
+    });  
+  });
+});
+
 // accordion
-new Accordion(".accordion-container", {
+new Accordion('.accordion-container', {
   openOnInit: [0]
 });
 
@@ -255,11 +274,95 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.catalog__paper').forEach(function(tabContent) {
         tabContent.classList.remove('catalog__paper--active')
       });
-      document.querySelector(`[data-target="${path}"]`).classList.add('catalog__paper--active')
+      document.querySelector(`[data-target='${path}']`).classList.add('catalog__paper--active')
     })
   })
 });
 
 // tooltips
 tippy('.projects__tooltip-btn', {
+  trigger: 'click'
 });
+
+// map
+ymaps.ready(init);
+function init(){
+  var myMap = new ymaps.Map('map', {
+    center: [55.75846806898367,37.60108849999989], 
+    zoom: 14,
+    controls: []
+  },
+  {
+    suppressMapOpenBlock: true
+  });
+// point
+  var myPlacemark = new ymaps.Placemark([55.75846806898367,37.60108849999989], {}, {
+    iconLayout: 'default#image',
+    iconImageHref: 'img/contacts-map-icon.svg',
+    iconImageSize: [20, 20]
+  });
+  myMap.geoObjects.add(myPlacemark);
+// controls
+  myMap.controls.add('geolocationControl', {
+    position: {
+      top: 350,
+      right: 10,
+      left: 'auto',
+  }
+  });
+  myMap.controls.add('zoomControl', {
+    size: 'small',
+    position: {
+      top: 260,
+      right: 10,
+      left: 'auto',
+  }
+  });
+// zoom
+  myMap.behaviors.disable('scrollZoom');
+};
+
+//simplebar
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.simplebar-content-wrapper').forEach(function(tabindexNone) {
+    tabindexNone.setAttribute('tabindex', '-1');
+  });
+});
+
+//validation and mask
+const validation = new JustValidate('#form', {
+  errorFieldCssClass: 'is-invalid',
+  errorContainer: '.errors-container',
+});
+validation
+  .addField('#name', [
+    {
+      rule: 'required',
+      errorMessage: 'Введите Ваше имя'
+    },
+    {
+      rule: 'minLength',
+      value: 3,
+      errorMessage: 'Имя должно содержать более 3 символов'
+    },
+    {
+      rule: 'maxLength',
+      value: 30,
+      errorMessage: 'Имя должно содержать менее 30 символов'
+    },
+    {
+      rule: 'customRegexp',
+      value: /^[^\d\t\n\r\f\v~`!\@"#№$;%^:&?*()_+=|/\\{}[\].,<>]{1,50}$/,
+      errorMessage: 'Недопустимый формат'
+    }
+  ])
+  .addField('#tel', [
+    {
+      rule: 'required',
+      errorMessage: 'Введите номер Вашего телефона'
+    },
+    {
+      rule: 'number',
+      errorMessage: 'Номер должен содержать только цифры'
+    }
+  ])
