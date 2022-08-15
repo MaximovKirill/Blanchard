@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
       keyboard: {
         enabled: true,
         onlyInViewport: true
-      }, 
+      },
       //Слайды вне области видимости нефокусируемы
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
       keyboard: {
         enabled: true,
         onlyInViewport: true
-      }, 
+      },
       //Слайды вне области видимости нефокусируемы
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     check.addEventListener('click', function() {
       check.toggleAttribute('checked');
-    }); 
+    });
   });
 
   //accordion
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ymaps.ready(init);
   function init(){
     var myMap = new ymaps.Map('map', {
-      center: [55.75846806898367,37.60108849999989], 
+      center: [55.75846806898367,37.60108849999989],
       zoom: 14,
       controls: []
     },
@@ -323,12 +323,12 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         rule: 'minLength',
         value: 3,
-        errorMessage: 'Имя должно содержать более 3 символов'
+        errorMessage: 'Введите более 3 символов'
       },
       {
         rule: 'maxLength',
         value: 30,
-        errorMessage: 'Имя должно содержать менее 30 символов'
+        errorMessage: 'Введите менее 30 символов'
       },
       {
         rule: 'customRegexp',
@@ -343,12 +343,12 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       {
         rule: 'number',
-        errorMessage: 'Номер должен содержать только цифры'
+        errorMessage: 'Введите только цифры'
       },
       {
         rule: 'maxLength',
         value: 11,
-        errorMessage: 'Телефон должен содержать менее 11 символов'
+        errorMessage: 'Введите менее 11 символов'
       },
     ])
     .onSuccess((event) => {
@@ -481,4 +481,119 @@ document.addEventListener('DOMContentLoaded', function() {
       focusOn()
     };
   });
+});
+
+//adaptive
+//burger
+function setBurger(params) {
+  const btn = document.querySelector(`.${params.btnClass}`);
+  const menu = document.querySelector(`.${params.menuClass}`);
+  const links = document.querySelectorAll(`.${params.menuLinks}`);
+  focusOffElem = [
+    'div[class="header__logo"]',
+    'div[class="header__btn-search"]',
+    'div[class="header__item_categories"]',
+    'section[class="hero"]',
+    'main',
+    'footer'
+  ];
+  btn.setAttribute('aria-expanded', false);
+  menu.addEventListener('animationend', function () {
+    if (this.classList.contains(params.hiddenClass)) {
+      this.classList.remove(params.activeClass);
+      this.classList.remove(params.hiddenClass);
+    };
+  });
+  btn.addEventListener('click', function () {
+    this.classList.toggle(params.activeClass);
+    document.querySelector('.header__login').classList.toggle('link-focus');
+    if (
+      !menu.classList.contains(params.activeClass) &&
+      !menu.classList.contains(params.hiddenClass)
+    ) {
+      menu.classList.add(params.activeClass);
+      document.body.style.overflow = 'hidden';
+      btn.setAttribute('aria-expanded', true);
+      document.querySelectorAll(focusOffElem).forEach(focusOff => {
+        focusOff.setAttribute('inert','');
+      });
+    } else {
+      menu.classList.add(params.hiddenClass);
+      document.body.removeAttribute('style');
+      btn.setAttribute('aria-expanded', false);
+      links.forEach((link) => {
+        link.addEventListener('click', function () {
+          btn.classList.toggle(params.activeClass);
+          menu.classList.add(params.hiddenClass);
+          document.body.removeAttribute('style');
+          btn.setAttribute('aria-expanded', false);
+        });
+      });
+      document.querySelectorAll(focusOffElem).forEach(f => {
+        f.removeAttribute('inert');
+      });
+    };
+  });
+};
+setBurger({
+  btnClass: "header__burger", // класс бургера
+  menuClass: "header__nav-wrapper", // класс меню
+  activeClass: "is-opened", // класс открытого состояния
+  hiddenClass: "is-closed", // класс закрывающегося состояния (удаляется сразу после закрытия)
+  menuLinks: "js-links" // класс ссылок в меню
+});
+
+//search
+function setSearch(params) {
+  const openBtn = document.querySelector(`.${params.openBtnClass}`);
+  const search = document.querySelector(`.${params.searchClass}`);
+  const closeBtn = search.querySelector(`.${params.closeBtnClass}`);
+  const searchInput = document.querySelector(`.${params.searchInputClass}`);
+
+  search.addEventListener("animationend", function (evt) {
+    if (this._isOpened) {
+      this.classList.remove(params.activeClass);
+      this.classList.remove(params.hiddenClass);
+      this._isOpened = false;
+    } else {
+      this._isOpened = true;
+    };
+  });
+  
+  search.addEventListener('click', function(evt) {
+    evt._isSearch = true;
+  });
+
+  openBtn.addEventListener("click", function (evt) {
+    this.disabled = true;
+    if (
+      !search.classList.contains(params.activeClass) &&
+      !search.classList.contains(params.hiddenClass)
+    ) {
+      search.classList.add(params.activeClass);
+    };
+    searchInput.focus();
+  });
+
+  closeBtn.addEventListener('click', function () {
+    openBtn.disabled = false;
+    search.classList.add(params.hiddenClass);
+    openBtn.focus();
+  });
+
+  document.body.addEventListener('click', function (evt) {
+    if (!evt._isSearch && search._isOpened) {
+      openBtn.disabled = false;
+      search.classList.add(params.hiddenClass);
+    };
+  });
+};
+
+setSearch({
+  openBtnClass: "header__btn-search", // класс кнопки открытия
+  closeBtnClass: "header__close-search", // класс кнопки закрытия
+  searchClass: "header__search_adaptive", // класс формы поиска
+  activeClass: "is-opened", // класс открытого состояния
+  hiddenClass: "is-closed", // класс закрывающегося состояния (удаляется сразу после закрытия)
+  searchInputClass: "search__input" // класс поля поиска
 });
