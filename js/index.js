@@ -27,13 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
         nextEl: '.galery__swiper-button_next',
         prevEl: '.galery__swiper-button_prev'
       },
-
       breakpoints: {
         441: {
           slidesPerView: 2,
           spaceBetween: 30
         },
-
         1200: {
           slidesPerView: 3,
           spaceBetween: 50
@@ -83,13 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
         nextEl: '.developments__swiper-button_next',
         prevEl: '.developments__swiper-button_prev'
       },
-
+      pagination: {
+        el: '.developments__swiper-pagination',
+        type: 'bullets',
+      },
       breakpoints: {
         441: {
           slidesPerView: 2,
           spaceBetween: 30
         },
-
+        1024: {
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+          spaceBetween: 27
+        },
         1200: {
           slidesPerView: 3,
           spaceBetween: 50
@@ -150,13 +155,11 @@ document.addEventListener('DOMContentLoaded', function() {
         nextEl: '.projects__swiper-button_next',
         prevEl: '.projects__swiper-button_prev'
       },
-
       breakpoints: {
         441: {
           slidesPerView: 2,
-          spaceBetween: 30
+          spaceBetween: 50
         },
-
         1200: {
           slidesPerView: 3,
           spaceBetween: 50
