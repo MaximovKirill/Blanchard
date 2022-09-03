@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
           slidesPerView: 2,
           spaceBetween: 30
         },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 35
+        },
         1200: {
           slidesPerView: 3,
           spaceBetween: 50
@@ -84,16 +88,22 @@ document.addEventListener('DOMContentLoaded', function() {
       pagination: {
         el: '.developments__swiper-pagination',
         type: 'bullets',
+        clickable: 'true'
       },
       breakpoints: {
-        441: {
+        568: {
           slidesPerView: 2,
-          spaceBetween: 30
+          slidesPerGroup: 2,
+          spaceBetween: 34
         },
-        1024: {
+        993: {
           slidesPerView: 3,
           slidesPerGroup: 3,
           spaceBetween: 27
+        },
+        1025: {
+          slidesPerView: 3,
+          slidesPerGroup: 1
         },
         1200: {
           slidesPerView: 3,
@@ -156,7 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
         prevEl: '.projects__swiper-button_prev'
       },
       breakpoints: {
-        441: {
+        568: {
+          slidesPerView: 2,
+          spaceBetween: 35
+        },
+        769: {
           slidesPerView: 2,
           spaceBetween: 50
         },
@@ -203,17 +217,19 @@ document.addEventListener('DOMContentLoaded', function() {
       const path = event.currentTarget.dataset.path;
       if (event.currentTarget.classList.contains('categories__btn_active')) {
         document.querySelectorAll('.categories__btn').forEach(function(stepBtn) {
-          stepBtn.classList.remove('categories__btn_active')
+          stepBtn.classList.remove('categories__btn_active');
+          stepBtn.setAttribute('aria-expanded','false');
         });
         document.querySelectorAll('.categories__dropdown').forEach(function(tabContent) {
-          tabContent.classList.remove('categories__dropdown_active')
+          tabContent.classList.remove('categories__dropdown_active');
         });
-      }
-        else {
+      } else {
           document.querySelectorAll('.categories__btn').forEach(function(stepBtn) {
-            stepBtn.classList.remove('categories__btn_active')
+            stepBtn.classList.remove('categories__btn_active');
+            stepBtn.setAttribute('aria-expanded','false');
           });
           event.currentTarget.classList.add('categories__btn_active');
+          event.currentTarget.setAttribute('aria-expanded','true');
           document.querySelectorAll('.categories__dropdown').forEach(function(tabContent) {
             tabContent.classList.remove('categories__dropdown_active')
           });
@@ -288,26 +304,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     myMap.geoObjects.add(myPlacemark);
     //controls
-    myMap.controls.add('geolocationControl', {
-      position: {
-        top: 350,
-        right: 10,
-        left: 'auto',
-      }
-    });
-    myMap.controls.add('zoomControl', {
-      size: 'small',
-      position: {
-        top: 260,
-        right: 10,
-        left: 'auto',
-      }
-    });
-    //zoom
     myMap.behaviors.disable('scrollZoom');
+    var geolocationControl = new ymaps.control.GeolocationControl({
+      options: {
+        position: {
+          top: 350,
+          right: 10,
+          left: 'auto',
+        }
+      }
+    });
+    myMap.controls.add(geolocationControl);
+    var zoomControl = new ymaps.control.ZoomControl({
+      options: {
+        size: 'small',
+        position: {
+          top: 260,
+          right: 10,
+          left: 'auto',
+        }
+      }
+    });
+    myMap.controls.add(zoomControl);
+    if (getWindowWidth() < 1025) {
+      geolocationControl.options.set('visible', false);
+      zoomControl.options.set('visible', false);
+    } else {
+      geolocationControl.options.set('visible', true);
+      zoomControl.options.set('visible', true);
+    };
+    window.addEventListener('resize', function(el) {
+      if (getWindowWidth() < 1025) {
+        geolocationControl.options.set('visible', false);
+        zoomControl.options.set('visible', false);
+      } else {
+        geolocationControl.options.set('visible', true);
+        zoomControl.options.set('visible', true);
+      };
+    });
   };
 
-  //simplebar
+  // simplebar
+  if (window.matchMedia('(max-width: 1024px)').matches) {
+    new SimpleBar(document.querySelector('.header__nav-scroll'), {
+      ariaLabel: 'Возможен скролл'
+    });
+  };
   document.querySelectorAll('.simplebar-content-wrapper').forEach(function(tabIndex) {
     tabIndex.setAttribute('tabindex', '-1');
   });
@@ -373,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   //scroll-mobile
-  const MOBILE_WIDTH = 580;
+  const MOBILE_WIDTH = 768;
   function getWindowWidth () {
     return Math.max(
       document.body.scrollWidth,
@@ -493,10 +535,10 @@ function setBurger(params) {
   const menu = document.querySelector(`.${params.menuClass}`);
   const links = document.querySelectorAll(`.${params.menuLinks}`);
   focusOffElem = [
-    'div[class="header__logo"]',
-    'div[class="header__btn-search"]',
-    'div[class="header__item_categories"]',
-    'section[class="hero"]',
+    '.header__logo',
+    '.header__btn-search',
+    '.header__item_categories',
+    '.hero',
     'main',
     'footer'
   ];
@@ -568,7 +610,7 @@ function setSearch(params) {
   });
 
   openBtn.addEventListener("click", function (evt) {
-    this.disabled = true;
+    document.querySelector('.header__btn-search').setAttribute('inert','');
     if (
       !search.classList.contains(params.activeClass) &&
       !search.classList.contains(params.hiddenClass)
@@ -579,14 +621,14 @@ function setSearch(params) {
   });
 
   closeBtn.addEventListener('click', function () {
-    openBtn.disabled = false;
+    document.querySelector('.header__btn-search').removeAttribute('inert');
     search.classList.add(params.hiddenClass);
     openBtn.focus();
   });
 
   document.body.addEventListener('click', function (evt) {
     if (!evt._isSearch && search._isOpened) {
-      openBtn.disabled = false;
+      document.querySelector('.header__btn-search').removeAttribute('inert');
       search.classList.add(params.hiddenClass);
     };
   });
