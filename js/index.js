@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
   //top-wrapper-swiper
   const topWrapperSwiper = new Swiper('.top-wrapper__swiper', {
     allowTouchMove: false,
@@ -604,7 +603,7 @@ function setSearch(params) {
       this._isOpened = true;
     };
   });
-  
+
   search.addEventListener('click', function(evt) {
     evt._isSearch = true;
   });
@@ -637,7 +636,7 @@ function setSearch(params) {
 setSearch({
   openBtnClass: "header__btn-search", // класс кнопки открытия
   closeBtnClass: "header__close-search", // класс кнопки закрытия
-  searchClass: "header__search_adaptive", // класс формы поиска
+  searchClass: "header__search-adaptive", // класс формы поиска
   activeClass: "is-opened", // класс открытого состояния
   hiddenClass: "is-closed", // класс закрывающегося состояния (удаляется сразу после закрытия)
   searchInputClass: "search__input" // класс поля поиска

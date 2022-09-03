@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Онлайн галерея Blanchard">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="HandheldFriendly" content="true">
   <meta name="MobileOptimized" content="width">
@@ -22,20 +23,20 @@
       <div class="header__item header__item_navigation">
         <div class="header__container container flex">
           <h1 class="header__title" hidden>Художественная галерея Blanchard</h1>
-          <a class="header__logo logo" href="#" role="banner" aria-label="Главная страница Blanchard">
+          <a class="header__logo logo" href="#" aria-label="Главная страница Blanchard">
             <picture class="logo__img">
               <source srcset="img/logo-320.png" media="(max-width: 375px)">
               <source srcset="img/logo-1024.png" media="(max-width: 1024px)">
               <img src="img/logo.png" alt="Blanchard художественная галерея">
             </picture>
           </a>
-          <nav class="nav header__nav" role="navigation">
+          <nav class="nav header__nav">
             <button class="header__burger btn-reset" type="button" aria-label="Меню" aria-expanded="false">
               <span class="header__burger-elem"></span>
             </button>
             <div class="nav__wrapper header__nav-wrapper flex">
               <div class="header__nav-scroll flex">
-                <ul class="nav__list header__list list-reset flex" role="menubar"> 
+                <ul class="nav__list header__list list-reset flex" role="menubar">
                   <li class="nav__item">
                     <a class="nav__link header__link js-scroll-link js-links" href="#about" role="menuitem" aria-labelledby="label-about">
                       <span class="header__link-text link-focus" id="label-about">О&nbsp;нас</span>
@@ -67,7 +68,7 @@
                     </a>
                   </li>
                 </ul>
-                <a class="nav__login header__login link-focus flex js-links" href="#"> 
+                <a class="nav__login header__login link-focus flex js-links" href="#">
                   <div class="header__login-icon">
                     <svg class="header__login-img" width="18" height="13" viewbox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9.62056 9.09278L10.6389 10.1111L14.25 6.5L10.6389 2.88889L9.62056 3.90722L11.4839 5.77778H0V7.22222H11.4839L9.62056 9.09278ZM16.0556 0H5.94444C5.14278 0 4.5 0.65 4.5 1.44444V4.33333H5.94444V1.44444H16.0556V11.5556H5.94444V8.66667H4.5V11.5556C4.5 12.35 5.14278 13 5.94444 13H16.0556C16.85 13 17.5 12.35 17.5 11.5556V1.44444C17.5 0.65 16.85 0 16.0556 0Z" fill="#fff"></path>
@@ -84,7 +85,7 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1246 24.174C10.0376 24.174 5.32763 19.2726 5.32763 13.5104C5.32763 7.74823 10.0376 2.84676 16.1246 2.84676C22.2115 2.84676 26.9215 7.74823 26.9215 13.5104C26.9215 19.2726 22.2115 24.174 16.1246 24.174ZM16.1246 26.8399C8.76285 26.8399 2.79502 20.8721 2.79502 13.5104C2.79502 6.14869 8.76285 0.180847 16.1246 0.180847C23.4863 0.180847 29.4541 6.14869 29.4541 13.5104C29.4541 20.8721 23.4863 26.8399 16.1246 26.8399Z" fill="white"></path>
             </svg>
           </button>
-          <form class="header__search_adaptive search flex" action="https://jsonplaceholder.typicode.com/posts" method="POST" role="search">
+          <form class="header__search-adaptive search flex" action="https://jsonplaceholder.typicode.com/posts" method="POST" role="search">
             <button class="search__btn btn-reset" aria-label="Найти">
               <svg class="search__img" width="30" height="29" viewbox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="9.15446" height="2.28862" transform="matrix(-0.718931 0.695081 0.718931 0.695081 6.58154 21.0461)" fill="white"></rect>
@@ -339,7 +340,7 @@
     </header>
     <section class="hero">
       <div class="hero__container container">
-        <em class="hero__title section-title">Прикоснитесь к&nbsp;прекрасному</em>
+        <h2 class="hero__title section-title">Прикоснитесь к&nbsp;прекрасному</h2>
         <p class="hero__descr">Мы&nbsp;вынуждены отталкиваться от&nbsp;того, что реализация намеченных плановых заданий создаёт предпосылки для новых предложений.</p>
         <a class="hero__link btn-focus js-scroll-link" href="#contacts">Подписаться на&nbsp;рассылку</a>
       </div>
@@ -366,29 +367,29 @@
         <div class="galery__elem galery__elem_left flex">
           <h2 class="galery__title section-title">Галерея</h2>
           <p class="galery__select-title">Фильтр:</p>
-          <select class="galery__select" id="selectcustom" role="listbox">
-            <option value="Живопись" selected role="option">Живопись</option>
-            <option value="Рисунок" role="option">Рисунок</option>
-            <option value="Скульптура" role="option">Скульптура</option>
+          <select class="galery__select" id="selectcustom">
+            <option value="Живопись" selected>Живопись</option>
+            <option value="Рисунок">Рисунок</option>
+            <option value="Скульптура">Скульптура</option>
           </select>
           <ul class="galery__checkbox-list checkbox flex list-reset" role="listbox">
             <li class="checkbox__item">
               <label class="checkbox__label" data-path="checkbox-one">
-                <input class="checkbox__input visually-hidden" data-target="checkbox-one" type="checkbox" value="XIX" checked role="checkbox">
+                <input class="checkbox__input visually-hidden" data-target="checkbox-one" type="checkbox" value="XIX" checked>
                 <span class="checkbox__check"></span>
                 <span class="checkbox__deskr">XIX век</span>
               </label>
             </li>
             <li class="checkbox__item">
               <label class="checkbox__label" data-path="checkbox-two">
-                <input class="checkbox__input visually-hidden" data-target="checkbox-two" type="checkbox" value="XX" role="checkbox">
+                <input class="checkbox__input visually-hidden" data-target="checkbox-two" type="checkbox" value="XX">
                 <span class="checkbox__check"></span>
                 <span class="checkbox__deskr">XX век</span>
               </label>
             </li>
             <li class="checkbox__item">
               <label class="checkbox__label" data-path="checkbox-three">
-                <input class="checkbox__input visually-hidden" data-target="checkbox-three" type="checkbox" value="modern" role="checkbox">
+                <input class="checkbox__input visually-hidden" data-target="checkbox-three" type="checkbox" value="modern">
                 <span class="checkbox__check"></span>
                 <span class="checkbox__deskr">Современность</span>
               </label>
@@ -477,7 +478,7 @@
                   <img src="img/catalog__plug.jpg" alt="Заглушка">
                 </div>
                 <div class="catalog__plug-text">
-                  <p class="catalog__plug-title">Что мы&nbsp;о&nbsp;нём знаем?</p>
+                  <h4 class="catalog__plug-title">Что мы&nbsp;о&nbsp;нём знаем?</h4>
                   <p class="catalog__plug-descr">Пока ничего... Зато мы&nbsp;точно знаем, что в&nbsp;галерее есть на&nbsp;что посмотреть!</p>
                   <a class="catalog__plug-link js-scroll-link" href="#galery">В&nbsp;галерею</a>
                 </div>
@@ -487,7 +488,7 @@
               <picture class="paper__img">
                 <img src="img/catalog__paper_1.jpg" alt="Бенедетто ди Биндо">
               </picture>
-              <p class="paper__title">Бенедетто ди&nbsp;Биндо</p>
+              <h4 class="paper__title">Бенедетто ди&nbsp;Биндо</h4>
               <p class="paper__date">1380-е&nbsp;&mdash; 19&nbsp;сентября 1417.</p>
               <p class="paper__descr">Итальянский художник сиенской школы. Бенедетто ди&nbsp;Биндо остался в&nbsp;истории искусства как сиенский художник, так сказать, &laquo;второго ряда&raquo;, несмотря на&nbsp;то, что за&nbsp;свою короткую жизнь он&nbsp;выполнил ряд весьма престижных заказов, включая работы в&nbsp;Сиенском соборе (работы в&nbsp;главном соборе республики второстепенным художникам не&nbsp;поручались). Обучение он&nbsp;прошёл у&nbsp;Таддео ди&nbsp;Бартоло, крупного сиенского мастера поздней готики, в&nbsp;боттеге которого Бенедетто трудился вместе с&nbsp;Грегорио ди&nbsp;Чекко. Наибольшее влияние на&nbsp;его творчество оказали работы Симоне Мартини, в&nbsp;частности в&nbsp;выборе колорита, а&nbsp;тонко проработанные лица его персонажей напоминают произведения Джованни да&nbsp;Милано.</p>
             </article>
@@ -495,7 +496,7 @@
               <picture class="paper__img">
                 <img src="img/catalog__paper_2.jpg" alt="Бенедетто ди Биндо">
               </picture>
-              <p class="paper__title">Бергоньоне, Амброджо</p>
+              <h4 class="paper__title">Бергоньоне, Амброджо</h4>
               <p class="paper__date">1453&nbsp;&mdash; 1523.</p>
               <p class="paper__descr">Итальянский художник ломбардской школы. Прозвище говорит о&nbsp;его тяготении к&nbsp;бургундской школе, по&nbsp;манере ему близок Винченцо Фоппа. Испытал влияние Леонардо да&nbsp;Винчи. Наиболее известен работами 1486&ndash;1494&nbsp;в монастырской обители картезианцев Чертоза ди&nbsp;Павия. Позднее работал в&nbsp;Милане в&nbsp;базилике Сант-Эусторджо и&nbsp;церкви Сан-Сатиро, после 1497&nbsp;&mdash; в&nbsp;Лоди, в&nbsp;1512&nbsp;&mdash; в&nbsp;Бергамо, незадолго до&nbsp;смерти&nbsp;&mdash; снова в&nbsp;Милане, в&nbsp;базилике Сан-Симпличано. Его завещание датировано 4&nbsp;апреля 1523, в&nbsp;том&nbsp;же году он&nbsp;умер. Одним из&nbsp;его учеников считают Бернардино Луини.</p>
             </article>
@@ -504,7 +505,7 @@
                 <source srcset="img/catalog__paper_12-320.jpg" media="(max-width: 320px)">
                 <img src="img/catalog__paper_12.jpg" alt="Доменико Гирландайо">
               </picture>
-              <p class="paper__title">Доменико Гирландайо</p>
+              <h4 class="paper__title">Доменико Гирландайо</h4>
               <p class="paper__date">2&nbsp;июня 1448&nbsp;&mdash; 11&nbsp;января 1494.</p>
               <p class="paper__descr">Один из&nbsp;ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и&nbsp;сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в&nbsp;течение года&nbsp;овладевал профессиональными навыками. Автор фресковых циклов, в&nbsp;которых выпукло, со&nbsp;всевозможными подробностями показана домашняя жизнь библейских персонажей (в&nbsp;их роли выступают знатные граждане Флоренции в&nbsp;костюмах того времени).</p>
             </article>
@@ -579,7 +580,7 @@
                       </a>
                     </li>
                     <li class="ac-list__item">
-                      <a class="ac-list__link js-scroll-link-mobile" href="#catalog__paper_12" data-path="ac-twelve" type="button" role="tab">
+                      <a class="ac-list__link js-scroll-link-mobile" href="#catalog__paper_12" data-path="ac-twelve"  role="tab">
                         <span class="ac-list__text link-focus">Доменико Гирландайо</span>
                       </a>
                     </li>
@@ -1016,7 +1017,7 @@
             </form>
             <div class="contacts__social">
               <p class="contacts__social-title">Связаться в&nbsp;один клик</p>
-              <ul class="contacts__social-list social-list list-reset flex" role="list">
+              <ul class="contacts__social-list social-list list-reset flex">
                 <li class="social-list__item">
                   <a class="contacts__social-list-link social-list__link" href="#" aria-label="Ссылка на Whatsup">
                     <svg class="social-list__img" width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1055,7 +1056,7 @@
           <img src="img/logo.png" alt="Blanchard художественная галерея">
         </picture>
       </a>
-      <ul class="footer__social-list social-list list-reset flex" role="list">
+      <ul class="footer__social-list social-list list-reset flex">
         <li class="social-list__item">
           <a class="footer__social-list-link social-list__link" href="#" aria-label="Ссылка на VK">
             <svg class="social-list__img" width="45" height="45" viewbox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
