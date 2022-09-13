@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         768: {
           slidesPerView: 2,
-          spaceBetween: 35
+          spaceBetween: 33
         },
         1200: {
           slidesPerView: 3,
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //projects-swiper
   const projectsSwiper = new Swiper('.projects__swiper', {
     slidesPerView: 1,
-    loop: true,
+    // loop: true,
       grid: {
         rows: 1,
         fill: 'row'
@@ -242,7 +242,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const choises = new Choices(element, {
     searchEnabled: false,
     itemSelectText: '',
-    shouldSort: false
+    shouldSort: false,
+    allowHTML: true
   });
 
   //checkbox
@@ -344,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // simplebar
-  if (window.matchMedia('(max-width: 1024px)').matches) {
+  if (window.matchMedia('(max-width: 1300px)').matches) {
     new SimpleBar(document.querySelector('.header__nav-scroll'), {
       ariaLabel: 'Возможен скролл'
     });
@@ -352,6 +353,11 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.simplebar-content-wrapper').forEach(function(tabIndex) {
     tabIndex.setAttribute('tabindex', '-1');
   });
+
+  //mask
+  var selector = document.querySelector("input[type='tel']");
+  var im = new Inputmask("+7(999)999-99-99");
+  im.mask(selector);
 
   //validation
   const validation = new JustValidate('#form-feedback', {
@@ -386,14 +392,12 @@ document.addEventListener('DOMContentLoaded', function() {
         errorMessage: 'Введите номер Вашего телефона'
       },
       {
-        rule: 'number',
-        errorMessage: 'Введите только цифры'
-      },
-      {
-        rule: 'maxLength',
-        value: 11,
-        errorMessage: 'Введите менее 11 символов'
-      },
+        validator: (value) => {
+        const phone = selector.inputmask.unmaskedvalue();
+        return Number(phone) && phone.length === 10;
+        },
+        errorMessage: 'Неверный формат телефона'
+      }
     ])
     .onSuccess((event) => {
       console.log('Validation passes and form submitted', event);
@@ -447,6 +451,8 @@ document.addEventListener('DOMContentLoaded', function() {
   //modals
   const btns = document.querySelectorAll('.galery__slide');
   const modalOverlay = document.querySelector('.modal-overlay');
+  const modalSimplebarWrap = document.querySelector('.modal-overlay .simplebar-content-wrapper');
+  const modalSimplebarCont = document.querySelector('.modal-overlay .simplebar-content');
   const modals = document.querySelectorAll('.modal');
   const esc = document.querySelectorAll('.modal__esc');
   focusElements = [
@@ -471,6 +477,18 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       document.querySelector(`[data-target="${path}"]`).classList.add('modal_visible');
       modalOverlay.classList.add('modal-overlay_visible');
+      document.body.style.overflow = 'hidden';
+      //Для скролла при маленькой высоте экрана
+      if (document.documentElement.clientHeight < document.querySelector('.modal_visible').clientHeight) {
+        document.querySelector('.modal-overlay .simplebar-content-wrapper').style = "align-items: stretch";
+      };
+      window.addEventListener('resize', function(elem) {
+        if (document.documentElement.clientHeight < document.querySelector('.modal_visible').clientHeight) {
+          document.querySelector('.modal-overlay .simplebar-content-wrapper').style = "align-items: stretch";
+        } else {
+          document.querySelector('.modal-overlay .simplebar-content-wrapper').style = "align-items: center";
+        };
+      });
       //Установка фокуса на кнопке модального окна
       const focusable = document.querySelector('.modal_visible').querySelectorAll(focusElements);
       function x() {
@@ -482,7 +500,10 @@ document.addEventListener('DOMContentLoaded', function() {
             el.focus();
           });
         });
-        modalOverlay.addEventListener('click', (e) => {
+        modalSimplebarWrap.addEventListener('click', (e) => {
+          el.focus();
+        });
+        modalSimplebarCont.addEventListener('click', (e) => {
           el.focus();
         });
       };
@@ -499,14 +520,21 @@ document.addEventListener('DOMContentLoaded', function() {
     modals.forEach((el) => {
       el.classList.remove('modal_visible');
     });
+    document.body.style.overflow = 'auto';
   };
   function focusOn() {
     document.querySelectorAll(focusOffElements).forEach(f => {
       f.removeAttribute('inert');
     });
   };
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target == modalOverlay) {
+  modalSimplebarWrap.addEventListener('click', (e) => {
+    if (e.target == modalSimplebarWrap) {
+      closeModal();
+      focusOn()
+    };
+  });
+  modalSimplebarCont.addEventListener('click', (e) => {
+    if (e.target == modalSimplebarCont) {
       closeModal();
       focusOn()
     };
@@ -556,28 +584,33 @@ function setBurger(params) {
       !menu.classList.contains(params.hiddenClass)
     ) {
       menu.classList.add(params.activeClass);
-      document.body.style.overflow = 'hidden';
-      btn.setAttribute('aria-expanded', true);
+      this.setAttribute('aria-expanded', true);
       document.querySelectorAll(focusOffElem).forEach(focusOff => {
         focusOff.setAttribute('inert','');
       });
+      document.body.style.overflow = 'hidden';
     } else {
       menu.classList.add(params.hiddenClass);
       document.body.removeAttribute('style');
-      btn.setAttribute('aria-expanded', false);
-      links.forEach((link) => {
-        link.addEventListener('click', function () {
-          btn.classList.toggle(params.activeClass);
-          menu.classList.add(params.hiddenClass);
-          document.body.removeAttribute('style');
-          btn.setAttribute('aria-expanded', false);
-        });
-      });
+      this.setAttribute('aria-expanded', false);
       document.querySelectorAll(focusOffElem).forEach(f => {
         f.removeAttribute('inert');
       });
     };
   });
+  if (!menu.classList.contains(params.activeClass)) {
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        btn.classList.toggle(params.activeClass);
+        menu.classList.add(params.hiddenClass);
+        document.body.removeAttribute('style');
+        btn.setAttribute('aria-expanded', false);
+        document.querySelectorAll(focusOffElem).forEach(f => {
+          f.removeAttribute('inert');
+        });
+      });
+    });
+  };
 };
 setBurger({
   btnClass: "header__burger", // класс бургера
@@ -591,7 +624,7 @@ setBurger({
 function setSearch(params) {
   const openBtn = document.querySelector(`.${params.openBtnClass}`);
   const search = document.querySelector(`.${params.searchClass}`);
-  const closeBtn = search.querySelector(`.${params.closeBtnClass}`);
+  const closeBtn = document.querySelector(`.${params.closeBtnClass}`);
   const searchInput = document.querySelector(`.${params.searchInputClass}`);
 
   search.addEventListener("animationend", function (evt) {
@@ -632,7 +665,6 @@ function setSearch(params) {
     };
   });
 };
-
 setSearch({
   openBtnClass: "header__btn-search", // класс кнопки открытия
   closeBtnClass: "header__close-search", // класс кнопки закрытия

@@ -13,7 +13,7 @@
   <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://unpkg.com/simplebar@latest/dist/simplebar.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/accordion-js@3.3.0/dist/accordion.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/accordion-js@3.3.2/dist/accordion.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <title>Онлайн галерея Blanchard</title>
 </head>
@@ -22,13 +22,9 @@
     <header class="header">
       <div class="header__item header__item_navigation">
         <div class="header__container container flex">
-          <h1 class="header__title" hidden>Художественная галерея Blanchard</h1>
+          <h1 class="header__title visually-hidden">Художественная галерея Blanchard</h1>
           <a class="header__logo logo" href="#" aria-label="Главная страница Blanchard">
-            <picture class="logo__img">
-              <source srcset="img/logo-320.png" media="(max-width: 375px)">
-              <source srcset="img/logo-1024.png" media="(max-width: 1024px)">
-              <img src="img/logo.png" alt="Blanchard художественная галерея">
-            </picture>
+            <img class="logo__img" src="img/logo.svg" alt="Blanchard художественная галерея">
           </a>
           <nav class="nav header__nav">
             <button class="header__burger btn-reset" type="button" aria-label="Меню" aria-expanded="false">
@@ -86,13 +82,13 @@
             </svg>
           </button>
           <form class="header__search-adaptive search flex" action="https://jsonplaceholder.typicode.com/posts" method="POST" role="search">
-            <button class="search__btn btn-reset" aria-label="Найти">
+            <button class="search__btn btn-reset" type="submit" aria-label="Найти">
               <svg class="search__img" width="30" height="29" viewbox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="9.15446" height="2.28862" transform="matrix(-0.718931 0.695081 0.718931 0.695081 6.58154 21.0461)" fill="white"></rect>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1246 24.174C10.0376 24.174 5.32763 19.2726 5.32763 13.5104C5.32763 7.74823 10.0376 2.84676 16.1246 2.84676C22.2115 2.84676 26.9215 7.74823 26.9215 13.5104C26.9215 19.2726 22.2115 24.174 16.1246 24.174ZM16.1246 26.8399C8.76285 26.8399 2.79502 20.8721 2.79502 13.5104C2.79502 6.14869 8.76285 0.180847 16.1246 0.180847C23.4863 0.180847 29.4541 6.14869 29.4541 13.5104C29.4541 20.8721 23.4863 26.8399 16.1246 26.8399Z" fill="white"></path>
               </svg>
             </button>
-            <input class="search__input" type="search" placeholder="Поиск по сайту" aria-label="Ввести в поле поиска">
+            <input class="search__input" type="search" aria-label="Ввести в поле поиска">
             <button class="header__close-search search__btn btn-reset" type="button" aria-label="Закрыть поле поиска">
               <svg  class="search__img" width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="29.567" height="2.9567" transform="matrix(0.707093 0.707121 -0.707093 0.707121 2.09326 0)" fill="white"></rect>
@@ -472,43 +468,43 @@
         <p class="catalog__descr">Акционеры крупнейших компаний, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут объявлены нарушающими общечеловеческие нормы этики и&nbsp;морали. Являясь всего лишь частью общей картины, стремящиеся вытеснить традиционное производство, нанотехнологии и&nbsp;по&nbsp;сей день остаются уделом либералов, которые жаждут быть функционально разнесены на&nbsp;независимые элементы.</p>
         <div class="catalog__content flex">
           <div class="catalog__elem catalog__elem_left">
-            <article class="catalog__paper paper" id="catalog__paper" data-target="ac-plug">
+            <div class="catalog__paper paper" id="catalog__paper" data-target="ac-plug">
               <div class="catalog__plug">
                 <div class="catalog__plug-img">
                   <img src="img/catalog__plug.jpg" alt="Заглушка">
                 </div>
                 <div class="catalog__plug-text">
-                  <h4 class="catalog__plug-title">Что мы&nbsp;о&nbsp;нём знаем?</h4>
+                  <span class="catalog__plug-title">Что мы&nbsp;о&nbsp;нём знаем?</span>
                   <p class="catalog__plug-descr">Пока ничего... Зато мы&nbsp;точно знаем, что в&nbsp;галерее есть на&nbsp;что посмотреть!</p>
                   <a class="catalog__plug-link js-scroll-link" href="#galery">В&nbsp;галерею</a>
                 </div>
               </div>
-            </article>
-            <article class="catalog__paper catalog__paper_active paper" id="catalog__paper_1" data-target="ac-one">
+            </div>
+            <div class="catalog__paper catalog__paper_active paper" id="catalog__paper_1" data-target="ac-one">
               <picture class="paper__img">
                 <img src="img/catalog__paper_1.jpg" alt="Бенедетто ди Биндо">
               </picture>
-              <h4 class="paper__title">Бенедетто ди&nbsp;Биндо</h4>
-              <p class="paper__date">1380-е&nbsp;&mdash; 19&nbsp;сентября 1417.</p>
+              <span class="paper__title">Бенедетто ди&nbsp;Биндо</span>
+              <span class="paper__date">1380-е&nbsp;&mdash; 19&nbsp;сентября 1417.</span>
               <p class="paper__descr">Итальянский художник сиенской школы. Бенедетто ди&nbsp;Биндо остался в&nbsp;истории искусства как сиенский художник, так сказать, &laquo;второго ряда&raquo;, несмотря на&nbsp;то, что за&nbsp;свою короткую жизнь он&nbsp;выполнил ряд весьма престижных заказов, включая работы в&nbsp;Сиенском соборе (работы в&nbsp;главном соборе республики второстепенным художникам не&nbsp;поручались). Обучение он&nbsp;прошёл у&nbsp;Таддео ди&nbsp;Бартоло, крупного сиенского мастера поздней готики, в&nbsp;боттеге которого Бенедетто трудился вместе с&nbsp;Грегорио ди&nbsp;Чекко. Наибольшее влияние на&nbsp;его творчество оказали работы Симоне Мартини, в&nbsp;частности в&nbsp;выборе колорита, а&nbsp;тонко проработанные лица его персонажей напоминают произведения Джованни да&nbsp;Милано.</p>
-            </article>
-            <article class="catalog__paper paper" id="catalog__paper_2" data-target="ac-two">
+            </div>
+            <div class="catalog__paper paper" id="catalog__paper_2" data-target="ac-two">
               <picture class="paper__img">
                 <img src="img/catalog__paper_2.jpg" alt="Бенедетто ди Биндо">
               </picture>
-              <h4 class="paper__title">Бергоньоне, Амброджо</h4>
-              <p class="paper__date">1453&nbsp;&mdash; 1523.</p>
+              <span class="paper__title">Бергоньоне, Амброджо</span>
+              <span class="paper__date">1453&nbsp;&mdash; 1523.</span>
               <p class="paper__descr">Итальянский художник ломбардской школы. Прозвище говорит о&nbsp;его тяготении к&nbsp;бургундской школе, по&nbsp;манере ему близок Винченцо Фоппа. Испытал влияние Леонардо да&nbsp;Винчи. Наиболее известен работами 1486&ndash;1494&nbsp;в монастырской обители картезианцев Чертоза ди&nbsp;Павия. Позднее работал в&nbsp;Милане в&nbsp;базилике Сант-Эусторджо и&nbsp;церкви Сан-Сатиро, после 1497&nbsp;&mdash; в&nbsp;Лоди, в&nbsp;1512&nbsp;&mdash; в&nbsp;Бергамо, незадолго до&nbsp;смерти&nbsp;&mdash; снова в&nbsp;Милане, в&nbsp;базилике Сан-Симпличано. Его завещание датировано 4&nbsp;апреля 1523, в&nbsp;том&nbsp;же году он&nbsp;умер. Одним из&nbsp;его учеников считают Бернардино Луини.</p>
-            </article>
-            <article class="catalog__paper paper" id="catalog__paper_12" data-target="ac-twelve">
+            </div>
+            <div class="catalog__paper paper" id="catalog__paper_12" data-target="ac-twelve">
               <picture class="paper__img">
                 <source srcset="img/catalog__paper_12-320.jpg" media="(max-width: 320px)">
                 <img src="img/catalog__paper_12.jpg" alt="Доменико Гирландайо">
               </picture>
-              <h4 class="paper__title">Доменико Гирландайо</h4>
-              <p class="paper__date">2&nbsp;июня 1448&nbsp;&mdash; 11&nbsp;января 1494.</p>
+              <span class="paper__title">Доменико Гирландайо</span>
+              <span class="paper__date">2&nbsp;июня 1448&nbsp;&mdash; 11&nbsp;января 1494.</span>
               <p class="paper__descr">Один из&nbsp;ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и&nbsp;сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в&nbsp;течение года&nbsp;овладевал профессиональными навыками. Автор фресковых циклов, в&nbsp;которых выпукло, со&nbsp;всевозможными подробностями показана домашняя жизнь библейских персонажей (в&nbsp;их роли выступают знатные граждане Флоренции в&nbsp;костюмах того времени).</p>
-            </article>
+            </div>
           </div>
           <div class="catalog__elem catalog__elem_right">
             <ul class="catalog__accordion accordion list-reset">
@@ -805,10 +801,10 @@
                     <img src="img/development__img_1.jpg" alt="Событие 1">
                   </picture>
                   <div class="development__content flex">
-                    <p class="development__info">
+                    <div class="development__info">
                       <span class="development__place">Музей им.&nbsp;Щусева</span>
                       <span class="development__date">с&nbsp;20&nbsp;марта по&nbsp;30&nbsp;апреля</span>
-                    </p>
+                    </div>
                     <h3 class="development__title">Книжная гравюра в живом восприятии</h3>
                     <p class="development__descr">Один из&nbsp;ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо.</p>
                     <a class="development__link" href="#">
@@ -826,10 +822,10 @@
                     <img src="img/development__img_2.jpg" alt="Событие 2">
                   </picture>
                   <div class="development__content flex">
-                    <p class="development__info">
+                    <div class="development__info">
                       <span class="development__place">ММОМА</span>
                       <span class="development__date">24&nbsp;марта 19:00</span>
-                    </p>
+                    </div>
                     <h3 class="development__title">&laquo;Открытая дискуссия&raquo;. Дмитрий Петров и&nbsp;Сергей Ильин.</h3>
                     <p class="development__descr">Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта.</p>
                     <a class="development__link" href="#">
@@ -847,10 +843,10 @@
                     <img src="img/development__img_3.jpg" alt="Событие 3">
                   </picture>
                   <div class="development__content flex">
-                    <p class="development__info">
+                    <div class="development__info">
                       <span class="development__place">Еврейский музей</span>
                       <span class="development__date">с&nbsp;31&nbsp;марта по&nbsp;21&nbsp;апреля</span>
-                    </p>
+                    </div>
                     <h3 class="development__title">Выставка &laquo;Формация 2020&raquo;</h3>
                     <p class="development__descr">Идейные соображения высшего порядка, а&nbsp;также современная методология разработки играет важную роль в&nbsp;формировании глубокомысленных рассуждений.</p>
                     <a class="development__link" href="#">
@@ -868,10 +864,10 @@
                     <img src="img/development__img_4.jpg" alt="Событие 4">
                   </picture>
                   <div class="development__content flex">
-                    <p class="development__info">
+                    <div class="development__info">
                       <span class="development__place">ММАМ</span>
                       <span class="development__date">с&nbsp;8&nbsp;апреля по&nbsp;20&nbsp;мая</span>
-                    </p>
+                    </div>
                     <h3 class="development__title">Джон Винзор. Фотографии из серии &laquo;Метафора серебра&raquo;</h3>
                     <p class="development__descr">Один из&nbsp;ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и&nbsp;сын Ридольфо.</p>
                     <a class="development__link" href="#">
@@ -889,10 +885,10 @@
                     <img src="img/development__img_5.jpg" alt="Событие 5">
                   </picture>
                   <div class="development__content flex">
-                    <p class="development__info">
+                    <div class="development__info">
                       <span class="development__place">Третьяковка на&nbsp;Крымском валу</span>
                       <span class="development__date">с&nbsp;30&nbsp;марта по&nbsp;30&nbsp;апреля</span>
-                    </p>
+                    </div>
                     <h3 class="development__title">XXIV Международная биеннале молодого искусства</h3>
                     <p class="development__descr">Внезапно, реплицированные с&nbsp;зарубежных источников, современные исследования.</p>
                     <a class="development__link" href="#">
@@ -1002,10 +998,10 @@
         <div class="contacts__container container">
           <h2 class="contacts-title" hidden>Контакты</h2>
           <div class="contacts__content flex">
-            <address class="contacts__address address">
-              <p class="address__title">Шоурум &#8470;4</p>
-              <p class="address__descr">Леонтьевский переулок, дом 5/1</p>
-            </address>
+            <div class="contacts__address address">
+              <span class="address__title">Шоурум &#8470;4</span>
+              <address class="address__descr">Леонтьевский переулок, дом 5/1</address>
+            </div>
             <form class="contacts__form form-feedback flex" id="form-feedback" action="https://jsonplaceholder.typicode.com/posts" method="POST" autocomplete="off">
               <label class="form-feedback__label" for="name">
                 <input class="form-feedback__input" id="name" type="text" name="name" placeholder="Имя*" autocomplete="off" required aria-label="Введите имя">
@@ -1016,7 +1012,7 @@
               <button class="form-feedback__btn btn-reset btn-focus" aria-label="Заказать обрытный звонок"></button>
             </form>
             <div class="contacts__social">
-              <p class="contacts__social-title">Связаться в&nbsp;один клик</p>
+              <span class="contacts__social-title">Связаться в&nbsp;один клик</span>
               <ul class="contacts__social-list social-list list-reset flex">
                 <li class="social-list__item">
                   <a class="contacts__social-list-link social-list__link" href="#" aria-label="Ссылка на Whatsup">
@@ -1051,10 +1047,7 @@
   <footer class="footer">
     <div class="footer__container container flex">
       <a class="footer__logo logo" href="#" aria-label="Главная страница Blanchard">
-        <picture class="logo__img">
-          <source srcset="img/logo-320.png" media="(max-width: 320px)">
-          <img src="img/logo.png" alt="Blanchard художественная галерея">
-        </picture>
+        <img class="logo__img" src="img/logo.svg" alt="Blanchard художественная галерея">
       </a>
       <ul class="footer__social-list social-list list-reset flex">
         <li class="social-list__item">
@@ -1083,7 +1076,7 @@
       </ul>
     </div>
   </footer>
-  <div class="modal-overlay">
+  <div class="modal-overlay" data-simplebar data-simplebar-aria-label="Возможен скрол">
     <div class="modal modal_1 flex" data-target="modal-1">
       <div class="modal__elem">
         <img class="modal__img" src="img/galery__slide-img_1.jpg" alt="Картина 1">
@@ -1165,11 +1158,12 @@
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-  <script src="https://unpkg.com/accordion-js@3.3.0/dist/accordion.min.js"></script>
-  <script src="https://unpkg.com/@popperjs/core@2"></script>
-  <script src="https://unpkg.com/tippy.js@6"></script>
+  <script src="https://unpkg.com/accordion-js@3.3.2/dist/accordion.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU"></script>
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script src="js/inputmask.min.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>
