@@ -248,13 +248,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //checkbox
   document.querySelectorAll('.checkbox__input').forEach(function(check) {
-    check.addEventListener('keydown', function(key) {
-      if ((key.keyCode === 13) || (key.keyCode === 32)) {
-        check.toggleAttribute('checked');
+    check.addEventListener('keydown', function(kk) {
+      if (kk.keyCode === 13) {
+        check.classList.toggle('checked');
       };
     });
     check.addEventListener('click', function() {
-      check.toggleAttribute('checked');
+      check.classList.toggle('checked');
     });
   });
 
@@ -345,13 +345,20 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // simplebar
-  if (window.matchMedia('(max-width: 1300px)').matches) {
-    new SimpleBar(document.querySelector('.header__nav-scroll'), {
-      ariaLabel: 'Возможен скролл'
-    });
+  function simpleBarZ () {
+    document.querySelectorAll('.simplebar-content-wrapper').forEach(function(tabIndex) {
+      tabIndex.setAttribute('tabindex', '-1');
+    }); 
   };
-  document.querySelectorAll('.simplebar-content-wrapper').forEach(function(tabIndex) {
-    tabIndex.setAttribute('tabindex', '-1');
+  if (window.matchMedia('(max-width: 1300px)').matches) {
+    new SimpleBar(document.querySelector('.header__nav-scroll'));
+    simpleBarZ();
+  };
+  window.addEventListener('resize', function() {
+    if (window.matchMedia('(max-width: 1300px)').matches) {
+      new SimpleBar(document.querySelector('.header__nav-scroll'));
+      simpleBarZ();
+    };
   });
 
   //mask
